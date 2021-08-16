@@ -1,0 +1,76 @@
+<!-- 격자판 최대합 -->
+<!-- ▣ 입력설명
+첫 줄에 자연수 N이 주어진다.(1<=N<=50)
+두 번째 줄부터 N줄에 걸쳐 각 줄에 N개의 자연수가 주어진다. 각 자연수는 100을 넘지 않는 다.
+▣ 출력설명 최대합을 출력합니다.
+▣ 입력예제 1
+5
+10 13 10 12 15 12 39 30 23 11 11 25 50 53 15 19 27 29 37 27 19 13 30 13 19
+▣ 출력예제 1 
+155 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){  
+                let answer=Number.MIN_SAFE_INTEGER;
+                let rowCount = 0;
+                let sum = 0;
+                let leftCrossSum = 0;
+                let leftCount = 0;
+                let rightCrossSum = 0;
+                let rightCount = arr.length - 1;
+                // 행
+                arr.forEach(el => {
+                  el.forEach(el => {
+                    sum += el;
+                    rowCount += 1;
+                  })
+                  if(sum > answer) {
+                    answer = sum;
+                  }
+                  if(rowCount === 5) {
+                    sum = 0;
+                  }
+                })
+                // 열
+                for(let i = 0; i < arr.length; i++) {
+                  for(let j = 0; j < arr.length; j++) {
+                    sum += arr[j][i];
+                    if(j === 4) {
+                      if(answer < sum) {
+                        answer = sum;
+                      }else {
+                        sum = 0;
+                      }
+                    }
+                  }
+                }
+                // 대각
+                arr.forEach(el => {
+                  leftCrossSum += el[leftCount];
+                  leftCount += 1; 
+                })
+                // 대각2
+                arr.forEach(el => {
+                  rightCrossSum += el[rightCount];
+                  rightCount -= 1; 
+                })
+
+                
+                return Math.max(answer, leftCrossSum, rightCrossSum);
+            }
+
+            let arr=[[10, 13, 10, 12, 15], 
+                     [12, 39, 30, 23, 11],
+                     [11, 25, 50, 53, 15],
+                     [19, 27, 29, 37, 27],
+                     [19, 13, 30, 13, 19]];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

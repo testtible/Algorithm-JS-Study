@@ -1,0 +1,34 @@
+<!-- 점수 계산 -->
+<!-- 4. 문제 참조 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){         
+                let answer=0, cnt=0;
+                arr.reduce((acc, cur) => {
+                  if(acc === 1 && cur === 1) {
+                    cnt += 1;
+                    answer += cnt;
+                    return cur;
+                  }else if(acc === 1 && cur === 0) {
+                    cnt += 1;
+                    answer += cnt;
+                    cnt = 0;
+                    return cur;
+                  }else if(acc === 0) {
+                    return cur;
+                  }
+                })
+                return answer;
+            }
+
+            let arr=[1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

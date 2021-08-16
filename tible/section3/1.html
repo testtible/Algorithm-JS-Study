@@ -1,0 +1,39 @@
+<!-- 회문 문자열 -->
+<!-- 앞에서 읽을 때나 뒤에서 읽을 때나 같은 문자열을 회문 문자열이라고 합니다.
+문자열이 입력되면 해당 문자열이 회문 문자열이면 "YES", 회문 문자열이 아니면 “NO"를 출력 하는 프로그램을 작성하세요.
+단 회문을 검사할 때 대소문자를 구분하지 않습니다.
+▣ 입력설명
+첫 줄에 정수 길이 100을 넘지 않는 공백이 없는 문자열이 주어집니다.
+▣ 출력설명
+첫 번째 줄에 회문 문자열인지의 결과를 YES 또는 NO로 출력합니다.
+▣ 입력예제 1 gooG
+▣ 출력예제 1 YES -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer = "YES";
+                let roundStr = Math.round(s.length / 2);
+                let reverseStr = s.slice(roundStr - 1).split("").reverse().join("").toLowerCase();
+                // console.log(roundStr)
+                if(s.slice(0, roundStr).toLowerCase() === reverseStr) {
+                  answer = "YES"
+                }else {
+                  answer = "NO";
+                }
+                // 앞뒤가 바뀌어도 똑같아야함.
+                // 뒤를 바꿔서 앞이랑 같은지 확인하면 되고, 대문자나 소문자로 변형해서 같은 것을 확인하면 됨.
+                // 2로 나누어서 반올림치면 됨. Math.round 사용                
+                return answer;
+            }
+            
+            let str="goooG";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

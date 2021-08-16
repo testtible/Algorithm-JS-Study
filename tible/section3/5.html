@@ -1,0 +1,40 @@
+<!-- 문자열 압축 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                
+                let answer = "";
+                let cnt = 1;
+                // 문자열 체크하고, 다르면 넘기기
+                s.split("").reduce((acc, cur) => {
+                  // 다음 문자열이 현재 문자열과 같은지 안같은지, 같으면 cnt + 1, 다르면 0으로 만들고 answer에 추가
+                  if(acc === cur) {
+                    cnt += 1;
+                    return cur;
+                  }else {
+                    if(cnt === 1) {
+                      cnt = "";
+                    }
+                    answer += acc + cnt;
+                    cnt = 1;
+                    return cur;
+                  }
+                })
+                return answer + s[s.length - 1];
+            }
+            
+            let str="KKHSSSSSSSE";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
+
+<!-- reduce 로 풀어보기. -->
+<!-- 더 좋은 방법 없나 찾아보기, reduce에 대해 더 심도있는 공부해보기. -->
+<!-- reduce의 원래 쓰임새가 아닌, 그 기능만을 사용하는 것이 과연 좋은 코드인가 의논해보기. -->

@@ -1,0 +1,35 @@
+<!-- 세 수 중 최솟값 -->
+<!-- 100이하의 자연수 A, B, C를 입력받아 세 수 중 가장 작은 값을 출력하는 프로그램을 작성하 세요.(정렬을 사용하면 안됩니다)
+▣ 입력설명
+첫 번째 줄에 100이하의 세 자연수가 입력된다.
+▣ 출력설명
+첫 번째 줄에 가장 작은 수를 출력한다.
+▣ 입력예제 1 
+6 5 11
+▣ 출력예제 1 
+5 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a, b, c){
+                let answer = Number.MAX_SAFE_INTEGER;
+                let arr = [a, b, c];
+                // 세 수 중 최솟값을 구하려면 어떻게 해야하지?
+                // 1. 앞 자리 수 부터 비교해서 제일 작은 값을 리턴하기
+                // 2. 뒷 수 보다 작은 수이면 뒷 수를 제외하고 생각
+                // 3. 배열로 만들어서 forEach를 사용해볼까?
+                arr.forEach(el => {
+                  el <= answer ? answer = el : answer = answer
+                })
+                return answer;
+            }
+
+            console.log(solution(2, 5, 3));
+        </script>
+    </body>
+</html>

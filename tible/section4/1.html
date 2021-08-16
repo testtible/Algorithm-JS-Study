@@ -1,0 +1,45 @@
+<!-- 자릿 수의 합 -->
+<!-- N개의 자연수가 입력되면 각 자연수의 자릿수의 합을 구하고, 그 합이 최대인 자연수를 출력 하는 프로그램을 작성하세요. 자릿수의 합이 같은 경우 원래 숫자가 큰 숫자를 답으로 합니다. 만약 235 와 1234가 동시에 답이 될 수 있다면 1234를 답으로 출력해야 합니다.
+▣ 입력설명
+첫 줄에 자연수의 개수 N(3<=N<=100)이 주어지고, 그 다음 줄에 N개의 자연수가 주어진다. 각 자연수의 크기는 10,000,000를 넘지 않는다.
+▣ 출력설명
+자릿수의 합이 최대인 자연수를 출력한다.
+▣ 입력예제 1
+7
+128 460 603 40 521 137 123
+▣ 출력예제 1 
+137 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, arr){
+                let answer = 0; 
+                let maxNum = Number.MIN_SAFE_INTEGER;
+                // 자연수 각 자리의 합이 제일 큰 숫자의 원본을 출력, 합이 같으면 원본이 큰 수를 출력.
+                // answer 에는 원본의 값을 넣어서 비교.
+                arr.forEach(el => {
+                  el = String(el);
+                  let num = 0;
+                  for(let i = 0; i < el.length; i++) {
+                    num += Number(el[i]); // 수의 합
+                  }
+                  
+                  if(num >= maxNum && Number(answer) < Number(el)) {
+                    maxNum = num;
+                    answer = Number(el);
+                    // Number를 안하면 String으로 만들어두었던 el 로 비교를 당하게 되므로,
+                  }
+                })
+                return answer;
+            }
+            
+            let arr=[1234, 235, 603, 40, 521, 137, 123];
+            console.log(solution(7, arr));
+        </script>
+    </body>
+</html>
