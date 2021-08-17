@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function isPrime(num) {
+        //각 요소들 뒤집기
+        num = num.map((el) => {
+          return parseInt(el.toString().split("").reverse().join(""));
+        });
+
+        //소수 여부확인
+        num = num.filter((el) => {
+          let isPrime = true;
+          const j = parseInt(Math.sqrt(el)); //요소의 제곱근
+
+          //2부터 요소의 제곱근수까지 나눌때 한번이라도 딱떨어지는 수 없으면 소수
+          for (let i = 2; i <= j; i++) {
+            if (el % i === 0) {
+              isPrime = false;
+            }
+          }
+
+          //1일경우 소수x
+          if (el === 1) {
+            isPrime = false;
+          }
+
+          //최종확인
+          if (isPrime) {
+            return el;
+          }
+        });
+
+        //필터링된 배열반환
+        return num;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(isPrime(arr));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        //1.문자의 인덱스를 다 뽑아내기
+        //2.문자열 인덱스 순회하면서 뽑아낸 문자인덱스값 - 문자열의 인덱스
+        //3.가장 짧은 문자거리 = 최솟값 구하기
+        //4.음수일경우 양수화
+        //5.제일 낮은수가 최솟값
+
+        let memo = [];
+        let idx = 0;
+
+        //1.문자의 각 인덱스를 다 뽑은후
+        while (s.indexOf(t, idx) !== -1) {
+          memo.push(s.indexOf(t, idx));
+          idx = s.indexOf(t, idx) + 1;
+        }
+
+        let result = [];
+        //2.문자열 인덱스 순회하면서 뽑아낸 문자인덱스값 - 문자열의 인덱스
+        for (let i = 0; i < s.length; i++) {
+          //3.가장 짧은 문자거리 = 최솟값 구하기
+          let min = Number.MAX_SAFE_INTEGER;
+          for (let j = 0; j < memo.length; j++) {
+            if (memo[j] - i < min) {
+              //4.음수일경우 양수화
+              if (memo[j] - i < 0) {
+                min = (memo[j] - i) * -1;
+              } else {
+                min = memo[j] - i;
+              }
+            }
+          }
+          result.push(min); //5.제일 낮은수가 최솟값
+        }
+        return result;
+        // 투포인트 알고리즘
+        // -> 다시풀어보기  (정방향 / 거꾸로 )
+      }
+
+      let str = "teachermode";
+      console.log(solution(str, "e"));
+    </script>
+  </body>
+</html>

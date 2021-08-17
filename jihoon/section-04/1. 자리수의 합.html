@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        //각요소들을 요소마다의 총합으로 바꾸기
+        //최대값 구하기
+        //같은값(최대값) 이있다면 원본끼리 비교후 큰수를 반환
+
+        //요소들을 자리수마다 합한수로 바꾸기
+        let temp = arr.map((el) =>
+          el
+            .toString()
+            .split("")
+            .map((el) => parseInt(el))
+            .reduce((acc, el) => acc + el)
+        );
+
+        // [123]
+        // ['1','2','3'] -> 숫자로 바꾸고 합하기
+
+        //최대값구하기 (최대값 요소 인덱스)
+        let max = Number.MIN_SAFE_INTEGER;
+        let memo;
+        for (let i = 0; i < arr.length; i++) {
+          if (temp[i] > max) {
+            max = temp[i];
+            memo = i;
+          }
+        }
+
+        return arr[memo];
+      }
+
+      let arr = [128, 460, 603, 40, 521, 137, 123];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

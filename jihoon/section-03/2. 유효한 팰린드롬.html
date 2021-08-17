@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        //입력받은 문자열을 뒤집어서 기존 문자열와 비교
+        //하나라도 틀리면 no
+        //알파벳의외의 문자들은 무시
+
+        //대문자 or 소문자로 통일
+        //reverse 메소드는 array이라서 문자열 -> 배열
+        s = s.toLowerCase();
+        const reversed = s.toLowerCase().split('').reverse();
+        let answer = 'yes';
+        for (let i = 0; i < s.length - 1; i++) {
+          if (s[i] !== reversed[i]) {
+            answer = 'no';
+          }
+        }
+        return answer;
+      }
+
+      let str = 'found7, time: study; Yduts; emit, 7Dnuof';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
