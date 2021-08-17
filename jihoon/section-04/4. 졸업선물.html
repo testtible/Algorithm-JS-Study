@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(money, product) {
+        //제일 높은 상품가격을 할인
+        //할인가격으로 변환후
+        //그후 요소들의 합 (상품가격+배송비)이 제일 적은수부터 예산에서 차감 -> 차감될때마다 count(학생수) +1
+
+        let result = 0; //선물할수있는 학생수
+        let max = Number.MIN_SAFE_INTEGER;
+        let idx = 0;
+        //제일 높은 상품가격 찾기
+        for (let i = 0; i < product.length; i++) {
+          if (product[i][0] / 2 + product[i][1] > max) {
+            max = product[i][0];
+            idx = i;
+          }
+        }
+
+        // 50%할인 적용
+        product[idx][0] = product[idx][0] / 2;
+
+        //상품가격+배송비
+        let temp = product.map((el) => {
+          return el.reduce((acc, el) => {
+            return acc + el;
+          }, 0);
+        });
+        //예산에서 낮은수부터 정렬후 차감
+        temp
+          .sort((a, b) => a - b) // 상품+배송비가 낮은요소부터 정렬
+          .forEach((el) => {
+            //예산에서 차감
+            if (money - el < 0) {
+              //예산초과시 종료
+              return;
+            }
+            money - el;
+            temp.shift();
+            result++;
+          });
+        return result;
+
+        //문제점 1.할인적용 대상 -> 모두한번씩 적용해보기 (완전탐색)
+        //sort시 합하고 정렬
+        // let answer = 0;
+        // let n = product.length;
+        // product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+        // for (let i = 0; i < n; i++) {
+        //   let money = m - (product[i][0] / 2 + product[i][1]);
+        //   let cnt = 1;
+        //   for (let j = 0; j < n; j++) {
+        //     if (j !== i && product[j][0] + product[j][1] > money) break;
+        //     if (j !== i && product[j][0] + product[j][1] <= money) {
+        //       money -= product[j][0] + product[j][1];
+        //       cnt++;
+        //     }
+        //   }
+        //   answer = Math.max(answer, cnt);
+        // }
+        // return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>

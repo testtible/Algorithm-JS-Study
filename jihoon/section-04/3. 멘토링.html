@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(test) {
+        //학생 하나씩 잡고
+        //해당학생 뒤에 누가있는지 메모
+        //test.length만큼 있으면 짝
+
+        let memo = {};
+        let student, behind;
+        for (let i = 0; i < test.length; i++) {
+          //시험순서
+          for (let j = 0; j < test[i].length; j++) {
+            //학생순서
+            student = arr[i][j];
+            for (let n = j + 1; n < test[i].length; n++) {
+              //해당학생 순위 뒤 학생들을 메모
+              behind = arr[i][n];
+
+              if (memo[`${student}${behind}`]) {
+                //증가연산자가 안돼서
+                memo[`${student}${behind}`] = memo[`${student}${behind}`] + 1;
+              } else {
+                memo[`${student}${behind}`] = 1;
+              }
+            }
+          }
+        }
+
+        let result = 0; //경우의수
+        let temp = Object.values(memo); //value들만 뽑아내기
+        //value들중에서 test.length(모든시험에 해당하는 횟수)의 중복횟수 -> 경우의 수
+        temp.forEach((el) => {
+          if (el === test.length) {
+            result++;
+          }
+        });
+
+        return result;
+      }
+      //map으로 다시 풀기
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

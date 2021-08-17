@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        //숫자만 추출
+        //요소마다 Number()로 타입변환시 문자열은 NaN 숫자는 숫자
+
+        // return str
+        //   .split('')
+        //   .filter((el) => {
+        //     return Number(el) !== NaN;
+        //   })
+        //   .join(''); //output = g0en2T0s8eSoft
+
+        //typeof NaN === 'number'
+        // 'NaN' !== "NaN" 이 아닌 요소들만 가져오기
+
+        return parseInt(
+          str
+            .split("")
+            .filter((el) => {
+              return Number(el).toString() !== "NaN";
+            })
+            .join("")
+        );
+
+        //replace , 정규표현식 , isNaN 으로 다시 풀어보기
+      }
+
+      let str = "g0en2T0s8eSoft";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
