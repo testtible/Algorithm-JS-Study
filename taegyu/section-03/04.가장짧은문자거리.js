@@ -1,8 +1,7 @@
 function solution(s, t) {
-  let answer;
+  let answer = [];
   const leng = s.length;
   let temp = leng + 1;
-  answer = [];
   for (let i = 0; i < leng; i++) {
     if (s[i] === t) {
       temp = 0;
@@ -12,6 +11,7 @@ function solution(s, t) {
       answer.push(temp);
     }
   }
+  console.log(answer);
 
   temp = leng + 1;
   for (let i = leng - 1; i > -1; i--) {
@@ -28,5 +28,5 @@ function solution(s, t) {
   return answer;
 }
 
-let str = 'eteachermode';
-console.log(solution(str, 'e'));
+let str = "teachermode";
+console.log(solution(str, "e"));
