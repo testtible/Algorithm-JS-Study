@@ -35,7 +35,6 @@ const printCommonElements = (arr1, arr2) => {
 		if (arr1Index === minLength || arr2Index === minLength) {
 			break
 		}
-
 		if (arr1[arr1Index] < arr2[arr2Index]) {
 			++arr1Index
 		} else if (arr2[arr2Index] < arr1[arr1Index]) {

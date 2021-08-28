@@ -27,6 +27,7 @@ const printPossibleCases = (arr, number) => {
 	let i = 0
 	let count = 0
 	let length = 1
+	let answer = 0
 
 	while (true) {
 		if (sum <= number && count === length) {
