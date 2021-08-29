@@ -1,4 +1,4 @@
-class SingleLinkedList {
+class DoubleLinkedList {
 	constructor() {
 		this.head = null
 		this.tail = null
@@ -14,6 +14,7 @@ class SingleLinkedList {
 			this.tail = node
 		} else {
 			this.tail.next = node
+			node.prev = this.tail
 			this.tail = node
 		}
 
@@ -28,31 +29,22 @@ class SingleLinkedList {
 			return
 		}
 
-		let current
+		let current = this.tail
 		let previous
-		let last
 
 		if (this.size === 1) {
-			current = this.head
 			this.head = null
 			this.tail = null
 		} else {
-			previous = this.head
-			current = previous.next
-
-			while (current.next) {
-				current = current.next
-				previous = previous.next
-			}
-
-			last = current
+			previous = current.prev
 			previous.next = null
 			this.tail = previous
+			current.prev = null
 		}
 
 		--this.size
 
-		return last
+		return current
 	}
 
 	// 맨 앞에 노드를 추가하는 메소드
@@ -64,6 +56,7 @@ class SingleLinkedList {
 			this.tail = node
 		} else {
 			node.next = this.head
+			this.head.prev = node
 			this.head = node
 		}
 
@@ -79,17 +72,19 @@ class SingleLinkedList {
 		}
 
 		let current = this.head
+		let next
 
 		if (this.size === 1) {
 			this.head = null
 			this.tail = null
 		} else {
-			this.head = this.head.next
+			next = current.next
+			this.head = next
+			next.prev = null
+			current.next = null
 		}
 
 		--this.size
-
-		current.next = null
 
 		return current
 	}
@@ -100,10 +95,23 @@ class SingleLinkedList {
 			return
 		}
 
-		let current = this.head
+		let current
+		let limit
+		let direction
+		const middle = Math.trunc((this.size - 1) / 2)
 
-		for (let i = 0; i < index; ++i) {
-			current = current.next
+		if (index <= middle) {
+			current = this.head
+			limit = index
+			direction = 'next'
+		} else {
+			current = this.tail
+			limit = this.size - 1 - index
+			direction = 'prev'
+		}
+
+		for (let i = 0; i < limit; ++i) {
+			current = current[direction]
 		}
 
 		return current
@@ -128,7 +136,9 @@ class SingleLinkedList {
 		const next = prev.next
 
 		prev.next = node
+		node.prev = prev
 		node.next = next
+		next.prev = node
 
 		++this.size
 
@@ -197,5 +207,6 @@ class Node {
 	constructor(element) {
 		this.element = element
 		this.next = null
+		this.prev = null
 	}
 }
