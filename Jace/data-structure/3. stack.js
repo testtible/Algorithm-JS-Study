@@ -67,7 +67,7 @@ class Stack {
 		let str = ''
 
 		while (current) {
-			str += `${current.element} - `
+			str = `${current.element}` + str
 
 			current = current.next
 		}
@@ -82,3 +82,5 @@ class Node {
 		this.next = null
 	}
 }
+
+module.exports = Stack
